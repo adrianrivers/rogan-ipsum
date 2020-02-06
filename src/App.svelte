@@ -1,5 +1,6 @@
 <script>
 	import { ROGANISMS } from './words.js';
+	import Select from './components/Select.svelte';
 
 	const formatSentence = wordArr => {
 		const sentence = `${wordArr.join(' ')}. `;
@@ -43,18 +44,47 @@
 		return text;
 	};
 
-	const state = {
+	let loremIpsum = {
 		numParagraphs: 1,
 		numSentences: 5,
-		text: generateLoremIpsum(1, 3)
 	};
 
+	let text = generateLoremIpsum(1, 5)
+
+	function handleSubmit() {
+		const { numParagraphs, numSentences } = loremIpsum;
+
+		return text = generateLoremIpsum(numParagraphs, numSentences)
+	}
 </script>
 
 <main>
-	{#each state.text as item}
-		<p>{item}</p>
-	{/each}
+	<div>
+		<div class="form">
+
+		<form on:submit|preventDefault={handleSubmit}>
+			<Select 
+				selectTitle="Number of paragraphs" 
+				selectName="numParagraphs"
+				bind:value={loremIpsum.numParagraphs}
+			/>
+			<Select 
+				selectTitle="Number of sentences" 
+				selectName="numSentences"
+				bind:value={loremIpsum.numSentences}
+			/>
+			<div>
+				<button type=submit>
+					Give me elk meat
+				</button>
+			</div>			
+		</form>
+
+		</div>
+		{#each text as textItem}
+			<p>{textItem}</p>
+		{/each}
+	</div>
 </main>
 
 <style>
