@@ -39,6 +39,11 @@ const phrases = [
   "my friend Jordan Peterson",
   "Jordan Peterson",
   "Bert Kreischer",
+  "CBD oil",
+  "Onnit",
+  "turmeric coffee with Lion's Mane mushroom",
+  "Ari Shaffir",
+  "David Goggins",
   "Khabib mauls everyone",
   "there's this guy on instagram, that has a pet badger and a rescued coyote",
   "I'm just playing devil's advocate here",
@@ -106,5 +111,4 @@ const fillerWords = [
   "hunt",
 ];
 
-
-export const ROGANISMS = [ ...phrases,  ...roganWords, ...fillerWords ];
+export const WORD_PHRASE_LIST = [ ...phrases,  ...roganWords, ...fillerWords ];

@@ -1,48 +1,8 @@
 <script>
-	import { ROGANISMS } from './words.js';
 	import Select from './components/Select.svelte';
+	import Button from './components/Button.svelte';
 
-	const formatSentence = wordArr => {
-		const sentence = `${wordArr.join(' ')}. `;
-		
-		return `${sentence[0].toUpperCase()}${sentence.slice(1)}`;
-	}
-
-	function generateWords(numWords) {
-		let wordArr = [];
-
-		for (let i = 0; i < numWords; i++) {
-			const wordNum = Math.floor(Math.random() * ROGANISMS.length);
-
-			wordArr.push(`${ROGANISMS[wordNum]}`);
-		}
-
-		return formatSentence(wordArr);
-	}
-
-	function generateParagraph(numSentences) {
-		let sentence = '';
-
-		for (let i = 0; i < numSentences; i++) {
-			const numWords = Math.floor(Math.random() * 6 + 5);
-	
-			sentence += generateWords(numWords);
-		}
-
-		return sentence;
-	};
-
-	function generateLoremIpsum(numParagraphs, numSentences) {
-		let text = [];
-
-		for (let i = 0; i < numParagraphs; i++) {
-			let paragraph = generateParagraph(numSentences);
-	
-			text.push(paragraph);
-		}
-
-		return text;
-	};
+	import { generateLoremIpsum } from './utils';
 
 	let loremIpsum = {
 		numParagraphs: 1,
@@ -54,57 +14,65 @@
 	function handleSubmit() {
 		const { numParagraphs, numSentences } = loremIpsum;
 
-		return text = generateLoremIpsum(numParagraphs, numSentences)
+		text = generateLoremIpsum(numParagraphs, numSentences)
 	}
 </script>
 
 <main>
-	<div>
-		<div class="form">
+	<div class="content">
 
-		<form on:submit|preventDefault={handleSubmit}>
-			<Select 
-				selectTitle="Number of paragraphs" 
-				selectName="numParagraphs"
-				bind:value={loremIpsum.numParagraphs}
-			/>
-			<Select 
-				selectTitle="Number of sentences" 
-				selectName="numSentences"
-				bind:value={loremIpsum.numSentences}
-			/>
-			<div>
-				<button type=submit>
-					Give me elk meat
-				</button>
-			</div>			
-		</form>
-
+		<div class="item">
+			<form on:submit|preventDefault={handleSubmit}>
+				<Select 
+					selectTitle="Number of paragraphs" 
+					bind:value={loremIpsum.numParagraphs}
+				/>
+				<Select 
+					selectTitle="Number of sentences" 
+					bind:value={loremIpsum.numSentences}
+				/>
+				
+				<Button buttonText="Try DMT!"/>
+			</form>
 		</div>
-		{#each text as textItem}
-			<p>{textItem}</p>
-		{/each}
+
+
+		<div class="item">
+			<div class="text-area">
+			{#each text as textItem}
+				<p class="paragraph">{textItem}</p>
+			{/each}
+			</div>
+		</div>
+
 	</div>
 </main>
 
 <style>
-main {
-	text-align: center;
-	padding: 1em;
-	max-width: 240px;
-	margin: 0 auto;
+.content {
+	display: grid;
+	grid-template-columns: 1, 1fr;
+	grid-template-rows: 2, 1fr;
+	grid-gap: 3em;
+	grid-template-areas: 'slot1' 'slot2';
+	padding: 2em;
 }
 
-h1 {
-	color: #ff3e00;
-	text-transform: uppercase;
-	font-size: 4em;
-	font-weight: 100;
+.main:nth-child(1) {
+	grid-area: slot1;
+}
+
+.main:nth-child(2) {
+	grid-area: slot1;
 }
 
 @media (min-width: 640px) {
-	main {
-		max-width: none;
+	.content {
+		grid-template-areas: 'slot1 slot2';
 	}
+}
+
+.paragraph:first-child {
+	margin-top: 0;
 }
 </style>
