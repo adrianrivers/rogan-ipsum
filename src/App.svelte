@@ -58,14 +58,6 @@
 	padding: 2em;
 }
 
-.main:nth-child(1) {
-	grid-area: slot1;
-}
-
-.main:nth-child(2) {
-	grid-area: slot1;
-}
-
 @media (min-width: 640px) {
 	.content {
 		grid-template-areas: 'slot1 slot2';
