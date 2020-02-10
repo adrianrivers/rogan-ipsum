@@ -11,9 +11,10 @@
 		let wordArr = [];
 
 		for (let i = 0; i < numWords; i++) {
-			const wordNum = Math.floor(Math.random() * WORD_PHRASE_LIST.length);
+			const wordNum = () => Math.floor(Math.random() * WORD_PHRASE_LIST.length);
+			const pushWord = () => wordArr.push(`${WORD_PHRASE_LIST[wordNum()]}`);
 
-			wordArr.push(`${WORD_PHRASE_LIST[wordNum]}`);
+			pushWord();
 		}
 
 		return formatSentence(wordArr);
