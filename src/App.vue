@@ -21,6 +21,8 @@ const handleClick = () => {
     numSentences,
     vocab: VOCAB,
   })
+
+  console.log(generatedLoremIpsumArr.value)
 }
 </script>
 

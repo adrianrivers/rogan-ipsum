@@ -1,16 +1,15 @@
 import { generateLoremIpsum } from './generateLoremIpsum'
 
-import { WORDS } from '../constants'
-
 describe('Helpers -- Generate Lorem Ipsum', () => {
   test('generateLoremIpsum', () => {
     const result = generateLoremIpsum({
-      numParagraphs: 3,
-      numSentences: 5,
-      vocab: [...WORDS],
+      numParagraphs: 2,
+      numSentences: 1,
+      vocab: ['test1', 'test2', 'test3'],
     })
 
-    // expect(result.length).toBe(10)
+    expect(result[0].at(-1)).toBe('.')
+    expect(result[1].at(-1)).toBe('.')
     expect(true).toBe(true)
   })
 })

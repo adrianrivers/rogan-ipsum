@@ -6,7 +6,7 @@ const formatSentence = (sentence: string[]): string => {
 }
 
 const generateSentences = (vocab: string[]): string => {
-  const senctenceSlots = Math.floor(Math.random() * 10) + 1
+  const senctenceSlots = Math.floor(Math.random() * 20) + 5
   const sentence = []
   let index = 0
 
@@ -19,7 +19,7 @@ const generateSentences = (vocab: string[]): string => {
   return formatSentence(sentence)
 }
 
-const generateParagraphs = (numSentences: number, vocab: string[]): string => {
+const generateParagraphs = (numSentences: number, vocab: string[]) => {
   const paragraph = []
   let index = 0
 
@@ -28,7 +28,7 @@ const generateParagraphs = (numSentences: number, vocab: string[]): string => {
     index++
   }
 
-  return paragraph.join()
+  return paragraph.join(' ')
 }
 
 export const generateLoremIpsum = ({
