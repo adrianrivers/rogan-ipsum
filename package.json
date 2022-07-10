@@ -1,9 +1,6 @@
 {
   "name": "rogan-ipsum-v3",
   "version": "0.0.0",
-  "engines": {
-    "node": ">=14.18.1"
-  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
