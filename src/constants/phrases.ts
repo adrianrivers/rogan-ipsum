@@ -42,7 +42,6 @@ export const PHRASES = [
   'CBD oil',
   'Onnit',
   "turmeric coffee with Lion's Mane mushroom",
-  'Ari Shaffir',
   'David Goggins',
   'Khabib mauls everyone',
   "there's this guy on instagram, that has a pet badger and a rescued coyote",
@@ -60,4 +59,9 @@ export const PHRASES = [
   "it'll fuck you up",
   'Terence McKenna',
   "Lion's mane",
+  "I don't care if you're gay, black, Chinese, straight.",
+  'When I say something stupid, I’m not thinking about what I’m going to say before I say it.',
+  "If you're like 21 years old, and you say to me, should I get vaccinated? I'll go no.",
+  'madness of crowds',
+  "They've arrested leftists for starting forest fires up there",
 ]

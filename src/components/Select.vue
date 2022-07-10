@@ -1,7 +1,7 @@
 <template>
   <select
     :name="name"
-    class="block w-full rounded-lg border focus:border-blue-500"
+    class="block w-full rounded-lg border-2 border-fuchsia-700 px-2 py-1 focus:border-orange-700"
     @change="handleChange"
   >
     <option value="1">1</option>
