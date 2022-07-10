@@ -1,6 +1,6 @@
 import { generateLoremIpsum } from './generateLoremIpsum'
 
-import { WORDS } from '../contsants'
+import { WORDS } from '../constants'
 
 describe('Helpers -- Generate Lorem Ipsum', () => {
   test('generateLoremIpsum', () => {

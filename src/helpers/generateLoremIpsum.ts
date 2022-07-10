@@ -1,25 +1,25 @@
-const formatSentence = (sentence: string[]) => {
+const formatSentence = (sentence: string[]): string => {
   const firstWord = sentence[0]
   const capitalisedFirstWord = firstWord[0].toUpperCase() + firstWord.slice(1)
 
-  return [capitalisedFirstWord, ...sentence.slice(1)].join(' ')
+  return `${[capitalisedFirstWord, ...sentence.slice(1)].join(' ')}.`
 }
 
-function generateSentences(vocab: string[]) {
+const generateSentences = (vocab: string[]): string => {
   const senctenceSlots = Math.floor(Math.random() * 10) + 1
   const sentence = []
   let index = 0
 
   while (index < senctenceSlots) {
     const randomVocabArrPos = Math.floor(Math.random() * vocab.length)
-    sentence.push(vocab.at(randomVocabArrPos) ?? '')
+    sentence.push(vocab[randomVocabArrPos])
     index++
   }
 
   return formatSentence(sentence)
 }
 
-function generateParagraphs(numSentences: number, vocab: string[]) {
+const generateParagraphs = (numSentences: number, vocab: string[]): string => {
   const paragraph = []
   let index = 0
 
@@ -28,10 +28,10 @@ function generateParagraphs(numSentences: number, vocab: string[]) {
     index++
   }
 
-  return paragraph.join('. ')
+  return paragraph.join()
 }
 
-export function generateLoremIpsum({
+export const generateLoremIpsum = ({
   numParagraphs,
   numSentences,
   vocab,
@@ -39,10 +39,11 @@ export function generateLoremIpsum({
   numParagraphs: number
   numSentences: number
   vocab: string[]
-}): string[] {
+}): string[] => {
   const arr = Array.from(new Array(numParagraphs).fill([]))
   const paragraphs = arr.map(() => generateParagraphs(numSentences, vocab))
 
   console.log(paragraphs)
+
   return paragraphs
 }
