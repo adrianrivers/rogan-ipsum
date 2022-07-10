@@ -2,8 +2,12 @@
   "extends": "./tsconfig.app.json",
   "exclude": [],
   "compilerOptions": {
+    "isolatedModules": false,
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
     "composite": true,
     "lib": [],
-    "types": ["node", "jsdom"]
+    "types": ["node", "jsdom", "vitest/globals"]
   }
 }
