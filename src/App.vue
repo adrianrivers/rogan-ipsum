@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import TheHeader from "./components/TheHeader.vue";
+import Header from './components/Header.vue'
 </script>
 
 <template>
-  <TheHeader></TheHeader>
+  <Header></Header>
   <main>Rogan Ipsum</main>
 </template>

@@ -1,5 +1,5 @@
 /* eslint-env node */
-require("@rushstack/eslint-patch/modern-module-resolution");
+require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
@@ -8,13 +8,13 @@ module.exports = {
     browser: true,
   },
   extends: [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "@vue/eslint-config-typescript/recommended",
-    "@vue/eslint-config-prettier",
-    "plugin:tailwindcss/recommended",
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-typescript/recommended',
+    '@vue/eslint-config-prettier',
+    'plugin:tailwindcss/recommended',
   ],
   rules: {
-    "vue/multi-word-component-names": 0,
+    'vue/multi-word-component-names': 0,
   },
-};
+}
