@@ -43,7 +43,5 @@ export const generateLoremIpsum = ({
   const arr = Array.from(new Array(numParagraphs).fill([]))
   const paragraphs = arr.map(() => generateParagraphs(numSentences, vocab))
 
-  console.log(paragraphs)
-
   return paragraphs
 }
