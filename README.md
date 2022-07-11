@@ -1,7 +1,8 @@
 # rogan-ipsum-v3
 
 ## Deployed site
-https://adrianrivers.github.io/rogan-ipsum/
+https://rogan-ipsum.netlify.app/
+
 
 ## Project Setup
 

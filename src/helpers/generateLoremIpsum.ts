@@ -1,3 +1,9 @@
+interface GenerateLoremIpsum {
+  numParagraphs: number
+  numSentences: number
+  vocab: string[]
+}
+
 const formatSentence = (sentence: string[]): string => {
   const firstWord = sentence[0]
   const capitalisedFirstWord = firstWord[0].toUpperCase() + firstWord.slice(1)
@@ -6,7 +12,7 @@ const formatSentence = (sentence: string[]): string => {
 }
 
 const generateSentences = (vocab: string[]): string => {
-  const senctenceSlots = Math.floor(Math.random() * 20) + 5
+  const senctenceSlots = Math.floor(Math.random() * 10) + 1
   const sentence = []
   let index = 0
 
@@ -35,11 +41,7 @@ export const generateLoremIpsum = ({
   numParagraphs,
   numSentences,
   vocab,
-}: {
-  numParagraphs: number
-  numSentences: number
-  vocab: string[]
-}): string[] => {
+}: GenerateLoremIpsum): string[] => {
   const arr = Array.from(new Array(numParagraphs).fill([]))
   const paragraphs = arr.map(() => generateParagraphs(numSentences, vocab))
 

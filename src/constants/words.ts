@@ -8,6 +8,7 @@ export const WORDS = [
   'jujitsu',
   'MMA',
   'testostorone',
+  'HGH',
   'comedian',
   'human',
   'THC',

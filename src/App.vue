@@ -42,7 +42,7 @@ const handleClick = () => {
         </div>
       </div>
 
-      <div class="col-span-full md:col-span-9">
+      <div class="col-span-full ease-in-out md:col-span-9">
         <p
           v-for="(paragraph, index) in generatedLoremIpsumArr"
           :key="index"
