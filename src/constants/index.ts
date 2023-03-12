@@ -1,4 +1,5 @@
-export { FILLERS } from './fillers'
-export { PHRASES } from './phrases'
-export { WORDS } from './words'
-export { VOCAB } from './vocab'
+import { PHRASES } from './phrases'
+import { NAMES } from './names'
+import { WORDS } from './words'
+
+export const VOCAB = [...NAMES, ...PHRASES, ...WORDS]

@@ -1,8 +1,23 @@
 <template>
-  <button
-    type="button"
-    class="mr-2 mb-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-l focus:outline-none focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-800"
-  >
-    <slot></slot>
+  <button class="group relative flex h-max grow-0 bg-black">
+    <span
+      class="inline-block h-full w-full border-2 border-black p-2.5 transition-all duration-75 ease-linear group-hover:translate-y-[-2px] group-hover:translate-x-[-2px]"
+      :class="{
+        'bg-yellow': variant === 'yellow',
+        'bg-congo-pink': variant === 'pink',
+      }"
+    >
+      <slot />
+    </span>
   </button>
 </template>
+
+<script setup lang="ts">
+export interface ButtonProps {
+  variant?: 'yellow' | 'pink'
+}
+
+withDefaults(defineProps<ButtonProps>(), {
+  variant: 'yellow',
+})
+</script>

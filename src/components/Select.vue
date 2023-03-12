@@ -1,29 +1,64 @@
 <template>
-  <select
-    :name="name"
-    class="block w-full rounded-lg border-2 border-fuchsia-700 px-2 py-1 focus:border-orange-700"
-    @change="handleChange"
+  <div
+    class="group relative w-full bg-yellow text-center text-black hover:cursor-pointer"
+    @click="open = !open"
   >
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
+    <div
+      role="button"
+      class="relative flex w-full items-center justify-between border-2 border-black p-2.5"
+    >
+      <span>{{ selected }}</span>
+      <svg
+        viewBox="0 0 8 6"
+        height="8"
+        width="6"
+        class="transition-all duration-75 ease-linear"
+        :class="{
+          '-rotate-90': !open,
+        }"
+      >
+        <path d="M4 6 .536 0h6.928L4 6Z" fill="currentColor" />
+      </svg>
+    </div>
+
+    <ul
+      class="absolute left-0 top-12 z-30 inline-block w-full bg-congo-pink text-left"
+      v-if="open"
+    >
+      <li v-for="(option, i) in options" :key="i">
+        <a
+          href="#"
+          class="relative block h-full w-full border-x-2 border-b-2 border-black p-2.5 text-left text-base transition-colors duration-300 ease-in-out"
+          @click.prevent="handleClick(option)"
+          v-if="selected !== option"
+        >
+          {{ option }}
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 export interface SelectProps {
-  name: string
-  modelValue: number
+  options: Array<string>
+  modelValue: string
 }
 
-defineProps<SelectProps>()
+export interface SelectEmit {
+  (e: 'update:modelValue', value: string): void
+}
 
-const emit = defineEmits(['update:modelValue'])
+const props = defineProps<SelectProps>()
+const emit = defineEmits<SelectEmit>()
 
-const handleChange = (e: Event) => {
-  const target = e.target as HTMLSelectElement
-  emit('update:modelValue', parseInt(target.value))
+const selected = ref(props.options.at(0))
+const open = ref(false)
+
+const handleClick = (option: string) => {
+  selected.value = option
+  emit('update:modelValue', option)
 }
 </script>

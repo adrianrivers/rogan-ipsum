@@ -1,49 +1,63 @@
 interface GenerateLoremIpsum {
-  numParagraphs: number
-  numSentences: number
+  num: number
+  type: 'Paragraphs' | 'Sentences'
   vocab: string[]
+}
+
+const randomInteger = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+const randomWord = (vocab: string[]): string => {
+  const randomVocabArrPos = Math.floor(Math.random() * vocab.length)
+  return vocab[randomVocabArrPos]
 }
 
 const formatSentence = (sentence: string[]): string => {
   const firstWord = sentence[0]
-  const capitalisedFirstWord = firstWord[0].toUpperCase() + firstWord.slice(1)
+  const capitalisedFirstWord =
+    firstWord.at(0)!.toUpperCase() + firstWord.slice(1)
 
-  return `${[capitalisedFirstWord, ...sentence.slice(1)].join(' ')}.`
+  return `${[capitalisedFirstWord, ...sentence.slice(1)].join(' ')}. `
 }
 
-const generateSentences = (vocab: string[]): string => {
-  const senctenceSlots = Math.floor(Math.random() * 10) + 1
-  const sentence = []
-  let index = 0
+const generateSentences = (vocab: string[], num: number) => {
+  let numWords: number
+  let sentence: string[]
+  const unformatted: string[][] = []
 
-  while (index < senctenceSlots) {
-    const randomVocabArrPos = Math.floor(Math.random() * vocab.length)
-    sentence.push(vocab[randomVocabArrPos])
-    index++
+  for (let i = 0; i < num; i++) {
+    sentence = []
+    numWords = randomInteger(10, 25)
+
+    for (let i = 0; i < numWords; i++) sentence.push(randomWord(vocab))
+
+    unformatted.push(sentence)
   }
 
-  return formatSentence(sentence)
+  const formatted = unformatted.map((sentence) => formatSentence(sentence))
+
+  return formatted
 }
 
-const generateParagraphs = (numSentences: number, vocab: string[]) => {
-  const paragraph = []
-  let index = 0
+const generateParagraphs = (vocab: string[], num: number): string[] => {
+  const unformatted = []
+  let numSentences: number
 
-  while (index < numSentences) {
-    paragraph.push(generateSentences(vocab))
-    index++
+  for (let i = 0; i < num; i++) {
+    numSentences = randomInteger(3, 8)
+    unformatted.push(generateSentences(vocab, numSentences).join(''))
   }
 
-  return paragraph.join(' ')
+  return unformatted
 }
 
 export const generateLoremIpsum = ({
-  numParagraphs,
-  numSentences,
+  num,
+  type,
   vocab,
 }: GenerateLoremIpsum): string[] => {
-  const arr = Array.from(new Array(numParagraphs).fill([]))
-  const paragraphs = arr.map(() => generateParagraphs(numSentences, vocab))
-
-  return paragraphs
+  return type === 'Paragraphs'
+    ? generateParagraphs(vocab, num)
+    : generateSentences(vocab, num)
 }

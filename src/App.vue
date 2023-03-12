@@ -1,56 +1,89 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { generateLoremIpsum } from '@/helpers/generateLoremIpsum'
 import { VOCAB } from '@/constants'
 
 import Header from '@/components/Header.vue'
 import Button from '@/components/Button.vue'
+import Input from '@/components/Input.vue'
 import Select from '@/components/Select.vue'
-
-const userInput = reactive({
-  numParagraphs: 1,
-  numSentences: 1,
-})
+import Toast from '@/components/Toast.vue'
 
 const generatedLoremIpsumArr = ref<string[]>([])
 
-const handleClick = () => {
-  const { numParagraphs, numSentences } = userInput
-  generatedLoremIpsumArr.value = generateLoremIpsum({
-    numParagraphs,
-    numSentences,
+const num = ref('1')
+const type = ref<'Paragraphs' | 'Sentences'>('Paragraphs')
+const generatedTextRef = ref<HTMLDivElement>()
+const toastRef = ref<InstanceType<typeof Toast>>()
+
+const handleGenerate = () => {
+  const generated = generateLoremIpsum({
+    num: parseInt(num.value),
+    type: type.value,
     vocab: VOCAB,
   })
+
+  generatedLoremIpsumArr.value = generated
 }
+
+const handleCopy = () => {
+  const text = generatedTextRef.value?.innerHTML
+
+  if (!text) return
+
+  const plainText = text.replace(/(<([^>]+)>)/gi, '')
+
+  navigator.clipboard
+    .writeText(plainText)
+    .then(() => {
+      return toastRef.value!.toggle()
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}
+
+onMounted(() => {
+  handleGenerate()
+})
 </script>
 
 <template>
   <Header />
-  <main class="m-auto max-w-6xl px-6">
-    <div class="grid grid-cols-4 gap-6 md:grid-cols-12">
-      <div class="order-first col-span-full mb-6 md:col-span-3">
-        <div class="mb-6">
-          <label for="paragraphs" class="block">Number of paragraphs</label>
-          <Select name="numParagraphs" v-model="userInput.numParagraphs" />
-        </div>
-        <div class="mb-6">
-          <label for="paragraphs" class="block">Number of sentences</label>
-          <Select name="numSentences" v-model="userInput.numSentences" />
-        </div>
-        <div>
-          <Button @click="handleClick"> Try DMT! </Button>
+  <main class="m-auto h-full min-h-screen max-w-6xl p-3 md:p-12">
+    <div class="grid grid-cols-12 gap-6 rounded-sm border-2 border-black p-6">
+      <div class="col-span-1">
+        <Input v-model="num" />
+      </div>
+      <div class="col-span-5">
+        <div class="flex gap-6">
+          <Select v-model="type" :options="['Paragraphs', 'Sentences']" />
+          <Button @click="handleGenerate">Generate</Button>
         </div>
       </div>
-
-      <div class="col-span-full ease-in-out md:col-span-9">
-        <p
-          v-for="(paragraph, index) in generatedLoremIpsumArr"
-          :key="index"
-          class="mb-6"
-        >
-          {{ paragraph }}
-        </p>
+      <div class="col-span-6 flex justify-end">
+        <Button variant="pink" @click="handleCopy">Copy</Button>
       </div>
     </div>
+    <div class="grid grid-cols-12 gap-6 border-x-2 border-b-2 border-black">
+      <div class="col-span-full lg:col-span-8">
+        <div class="bg-white p-6" ref="generatedTextRef">
+          <p
+            v-for="(paragraph, i) in generatedLoremIpsumArr"
+            :key="i"
+            :class="{
+              inline: type === 'Sentences',
+              'mt-6': i > 0,
+            }"
+          >
+            {{ paragraph }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <Toast ref="toastRef">
+      <p class="text-2xl">Copied to clipboard!</p>
+    </Toast>
   </main>
 </template>

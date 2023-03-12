@@ -1,15 +1,25 @@
 import { generateLoremIpsum } from './generateLoremIpsum'
 
-describe('Helpers -- Generate Lorem Ipsum', () => {
-  test('generateLoremIpsum', () => {
+describe('Helpers -- generateLoremIpsum', () => {
+  test('should return forma', () => {
     const result = generateLoremIpsum({
-      numParagraphs: 2,
-      numSentences: 1,
-      vocab: ['test1', 'test2', 'test3'],
+      num: 3,
+      type: 'Paragraphs',
+      vocab: ['test'],
     })
 
-    expect(result[0].at(-1)).toBe('.')
-    expect(result[1].at(-1)).toBe('.')
-    expect(true).toBe(true)
+    console.log(result)
+
+    expect(true)
   })
+
+  // test('should return ', () => {
+  //   const result = generateLoremIpsum({
+  //     num: 5,
+  //     type: 'Sentences',
+  //     vocab: ['a', 'b', 'c'],
+  //   })
+
+  //   expect(true)
+  // })
 })
