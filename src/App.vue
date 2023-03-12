@@ -50,7 +50,7 @@ onMounted(() => {
 
 <template>
   <Header />
-  <main class="m-auto h-full min-h-screen max-w-6xl p-3 md:p-12">
+  <main class="m-auto h-full min-h-screen max-w-6xl p-3 font-mono md:p-12">
     <div class="grid grid-cols-12 gap-6 rounded-sm border-2 border-black p-6">
       <div class="col-span-1">
         <Input v-model="num" />

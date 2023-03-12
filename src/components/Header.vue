@@ -1,16 +1,23 @@
 <template>
-  <nav class="max-w-6xl border-b-2 border-black bg-water-blue p-3 md:px-12">
-    <div class="flex items-center justify-between">
-      <div>
-        <h1 class="text-2xl">Rogan Ipsum</h1>
+  <div class="border-b-2 border-black bg-water-blue">
+    <nav class="mx-auto max-w-6xl p-3 md:px-12">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl">Rogan Ipsum</h1>
+        </div>
+        <Button @click="handleClick">
+          <GitHubIcon />
+        </Button>
       </div>
-      <a
-        href="https://github.com/adrianrivers/rogan-ipsum"
-        class="h-6 w-6"
-        target="_blank"
-      >
-        <img src="@/assets/github.png" class="object-contain" alt="GitHub" />
-      </a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>
+
+<script setup lang="ts">
+/// <reference types="vite-svg-loader" />
+import GitHubIcon from '@/assets/github.svg?component'
+import Button from '@/components/Button.vue'
+
+const handleClick = () =>
+  window.open('https://github.com/adrianrivers/rogan-ipsum', '_blank')
+</script>
