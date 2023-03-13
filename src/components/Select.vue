@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group relative w-full bg-yellow text-center text-black hover:cursor-pointer"
+    class="group relative w-full bg-water-blue text-center text-black hover:cursor-pointer"
     @click="open = !open"
   >
     <div
@@ -22,7 +22,7 @@
     </div>
 
     <ul
-      class="absolute left-0 top-12 z-30 inline-block w-full bg-congo-pink text-left"
+      class="absolute left-0 top-12 z-30 inline-block w-full bg-yellow text-left"
       v-if="open"
     >
       <li v-for="(option, i) in options" :key="i">

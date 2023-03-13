@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+  <path
+    d="M4 4v20h7v-2H6V6h12v1h2V4Zm8 4v20h16V8Zm2 2h12v16H14Z"
+    style="
+      stroke: none;
+      stroke-width: 1;
+      stroke-dasharray: none;
+      stroke-linecap: butt;
+      stroke-dashoffset: 0;
+      stroke-linejoin: miter;
+      stroke-miterlimit: 4;
+      fill: #000;
+      fill-rule: nonzero;
+      opacity: 1;
+    "
+    transform="matrix(.83 0 0 .83 -1.28 -1.28)"
+  />
+</svg>

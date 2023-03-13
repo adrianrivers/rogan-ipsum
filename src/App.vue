@@ -5,6 +5,7 @@ import { VOCAB } from '@/constants'
 
 import Header from '@/components/Header.vue'
 import Button from '@/components/Button.vue'
+import ButtonCopy from '@/components/ButtonCopy.vue'
 import Input from '@/components/Input.vue'
 import Select from '@/components/Select.vue'
 import Toast from '@/components/Toast.vue'
@@ -52,19 +53,22 @@ onMounted(() => {
   <Header />
   <main class="m-auto h-full min-h-screen max-w-6xl p-3 font-mono md:p-12">
     <div class="grid grid-cols-12 gap-6 rounded-sm border-2 border-black p-6">
-      <div class="col-span-1">
+      <div class="col-span-2 md:col-span-1 md:col-start-1">
         <Input v-model="num" />
       </div>
-      <div class="col-span-5">
+      <div class="col-span-10 md:col-span-5">
         <div class="flex gap-6">
           <Select v-model="type" :options="['Paragraphs', 'Sentences']" />
           <Button @click="handleGenerate">Generate</Button>
         </div>
       </div>
-      <div class="col-span-6 flex justify-end">
-        <Button variant="pink" @click="handleCopy">Copy</Button>
+      <div
+        class="order-first col-span-12 col-start-1 md:-order-none md:col-span-2 md:col-start-11"
+      >
+        <ButtonCopy @click="handleCopy" class="w-full" text="Copy" />
       </div>
     </div>
+
     <div class="grid grid-cols-12 gap-6 border-x-2 border-b-2 border-black">
       <div class="col-span-full lg:col-span-8">
         <div class="bg-white p-6" ref="generatedTextRef">

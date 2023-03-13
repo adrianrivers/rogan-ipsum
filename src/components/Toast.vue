@@ -9,7 +9,7 @@
   >
     <div class="fixed left-0 bottom-0 w-full" v-if="show">
       <div
-        class="mx-auto mt-2 w-fit rounded-sm border-2 border-black bg-water-blue p-6 text-center"
+        class="mx-auto mt-2 w-fit rounded-sm border-2 border-black bg-blue-magenta p-6 text-center"
         :class="{
           '-translate-y-7': show,
         }"
