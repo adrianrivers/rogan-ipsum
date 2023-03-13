@@ -14,6 +14,7 @@
 </template>
 
 <script setup lang="ts">
+/// <reference types="vite-svg-loader" />
 import GitHubIcon from '@/assets/github.svg?component'
 import Button from '@/components/Button.vue'
 

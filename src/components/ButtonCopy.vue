@@ -10,5 +10,6 @@
 </template>
 
 <script setup lang="ts">
+/// <reference types="vite-svg-loader" />
 import CopyIcon from '@/assets/copy.svg?component'
 </script>
